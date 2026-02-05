@@ -7,7 +7,9 @@ class AttendanceAnalyzer:
     def __init__(self):
         # Initialize DocTR predictor (Pretrained)
         # We use a basic pretrained model (det: db_resnet50, reco: crnn_vgg16_bn)
-        self.predictor = ocr_predictor(det_arch='db_resnet50', reco_arch='crnn_vgg16_bn', pretrained=True)
+        # Initialize DocTR predictor (Pretrained)
+        # Using MobileNet backends to fit within 512MB RAM on free tier cloud hosting
+        self.predictor = ocr_predictor(det_arch='db_mobilenet_v3_large', reco_arch='crnn_mobilenet_v3_large', pretrained=True)
 
     def analyze_image(self, image_path):
         """
